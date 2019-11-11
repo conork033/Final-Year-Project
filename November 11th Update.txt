@@ -1,0 +1,6 @@
+October 15th-Nov 6th - Received NFC Tags from amazon.Began to establish how to implement the idea for my aplication.Researched
+differnt methods for app development and Identified Android studio as the platform to build my app on.Installed android studio on my laptop and tried
+to get an understanding of how it worked as I had never come across it before.
+
+Nov 8th- Began to start on my own app by building a log in page including a username and password.
+Once this is is functional on my smartphone I will begin looking at how to read NFC Tags from it.
