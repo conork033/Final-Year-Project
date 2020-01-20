@@ -1,0 +1,8 @@
+Installed LAMP server on aws instance
+~Linux
+~apache
+~Mysql
+~PHP
+
+Refrence:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2.html
