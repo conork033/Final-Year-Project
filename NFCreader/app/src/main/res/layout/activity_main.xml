@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#5C73E91E"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="                    INTELLI SCAN "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"></TextView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nfc_contents"
+        android:layout_width="match_parent"
+        android:layout_height="167dp"
+        android:text="TAG ID:"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textIsSelectable="false"
+        android:textSize="18sp" />
+
+
+</LinearLayout>
