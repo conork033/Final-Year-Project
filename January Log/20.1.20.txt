@@ -1,8 +1,0 @@
-Installed WAMP server on aws instance
-~Wamp
-~apache
-~Mysql
-~PHP
-
-Refrence:
-https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/install-WAMP.html

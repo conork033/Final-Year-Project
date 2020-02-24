@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Response from sever:" + response, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Response from server:" + response, Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
