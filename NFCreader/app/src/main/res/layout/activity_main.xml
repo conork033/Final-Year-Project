@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#5C73E91E"
-    android:orientation="vertical"
-    android:theme="@style/AppTheme">
+    android:animationCache="false"
+    android:background="#4CACAF"
+    android:orientation="vertical">
+
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="                    INTELLI SCAN "
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="24sp"></TextView>
+        android:layout_height="107dp"
+        android:contentDescription="@string/app_name"
+        android:lineSpacingExtra="10sp"
+        android:paddingLeft="20mm"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        app:fontFamily="sans-serif-condensed"
+        tools:text="Intelli Scan"></TextView>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp">
 
-    </LinearLayout>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20sp" >
 
     <TextView
         android:id="@+id/nfc_contents"
         android:layout_width="match_parent"
-        android:layout_height="167dp"
-        android:text="TAG ID:"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textIsSelectable="false"
-        android:textSize="18sp" />
+        android:layout_height="92dp"
+        android:background="#BC9E33"
+        android:text="ID Scanned"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#03A9F4"
+        app:fontFamily="@font/adamina" />
 
 
 </LinearLayout>

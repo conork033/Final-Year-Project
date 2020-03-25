@@ -19,13 +19,28 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+
+import com.example.peng.nfcreadwrite.R;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 public class MainActivity extends Activity {
 
     public static final String ERROR_DETECTED = "No NFC tag detected!";
-
+    public static final String WRITE_SUCCESS = "Text written to the NFC tag successfully!";
+    public static final String WRITE_ERROR = "Error during writing, is the NFC tag close enough to your device?";
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
     IntentFilter writeTagFilters[];
@@ -43,13 +58,36 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         context = this;
 
+
+
+
+
+            String URL = "http://18.215.242.85/CheckConnect.php" +
+                    "";
+            RequestQueue queue;
+
+            queue = Volley.newRequestQueue(this);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(getApplicationContext(), "Response from server:" + response, Toast.LENGTH_LONG).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+            queue.add(stringRequest);
+
+
+
         tvNFCContent = (TextView) findViewById(R.id.nfc_contents);
-
-
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
-            //Unsuppported device
+            // Stop here, we definitely need NFC
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
         }
@@ -70,7 +108,6 @@ public class MainActivity extends Activity {
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
                 || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
                 || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
-            //parses the NDEF message from the intent
             Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             NdefMessage[] msgs = null;
             if (rawMsgs != null) {
@@ -82,11 +119,12 @@ public class MainActivity extends Activity {
             buildTagViews(msgs);
         }
     }
+
     private void buildTagViews(NdefMessage[] msgs) {
         if (msgs == null || msgs.length == 0) return;
 
         String text = "";
-//        String tagId = new String(msgs[0].getRecords()[0].getType());
+         //String tagId = new String(msgs[0].getRecords()[0].getType());
         byte[] payload = msgs[0].getRecords()[0].getPayload();
         String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get the Text Encoding
         int languageCodeLength = payload[0] & 0063; // Get the Language Code, e.g. "en"
@@ -98,9 +136,10 @@ public class MainActivity extends Activity {
         } catch (UnsupportedEncodingException e) {
             Log.e("UnsupportedEncoding", e.toString());
         }
-        //prints the parsed NDEF message
-        tvNFCContent.setText("  ITEM ID: " + text);
+
+        tvNFCContent.setText("NFC Content: " + text);
     }
+
 
 
 
@@ -115,6 +154,8 @@ public class MainActivity extends Activity {
             myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         }
     }
+
+
 
 
 
