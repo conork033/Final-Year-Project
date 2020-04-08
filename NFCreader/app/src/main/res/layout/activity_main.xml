@@ -5,16 +5,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:animationCache="false"
-    android:background="#4CACAF"
+    android:background="@android:drawable/gallery_thumb"
     android:orientation="vertical">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="107dp"
+        android:background="@android:drawable/divider_horizontal_textfield"
         android:contentDescription="@string/app_name"
         android:lineSpacingExtra="10sp"
         android:paddingLeft="20mm"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="sans"
@@ -31,11 +33,17 @@
         android:id="@+id/nfc_contents"
         android:layout_width="match_parent"
         android:layout_height="92dp"
-        android:background="#BC9E33"
-        android:text="ID Scanned"
+        android:background="@android:drawable/alert_light_frame"
+        android:text="Product Scanned"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#03A9F4"
         app:fontFamily="@font/adamina" />
+
+    <TextView
+        android:id="@+id/message1"
+        android:layout_width="match_parent"
+        android:layout_height="173dp"
+        android:background="@android:drawable/alert_light_frame" />
 
 
 </LinearLayout>
