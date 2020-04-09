@@ -35,6 +35,10 @@ import com.android.volley.toolbox.Volley;
 
 import com.example.peng.nfcreadwrite.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -54,6 +58,7 @@ public class MainActivity extends Activity {
     TextView tvNFCContent;
     TextView message;
     TextView message1;
+    EditText edit1;
 
 
 
@@ -66,6 +71,7 @@ public class MainActivity extends Activity {
         context = this;
         tvNFCContent = (TextView) findViewById(R.id.nfc_contents);
         message1 = (TextView) findViewById(R.id.message1);
+        edit1 = (EditText) findViewById(R.id.edit1);
 
 
         String URL = "http://3.84.209.134/Test.php" +
@@ -77,8 +83,9 @@ public class MainActivity extends Activity {
         StringRequest postRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Response from server:" + response, Toast.LENGTH_LONG).show();
-               // message1.setText("Server response: " + response);
+              //  Toast.makeText(getApplicationContext(), "Response from server:" + response, Toast.LENGTH_LONG).show();
+                 message1.setText("Server response: " + response);
+
 
             }
         }, new Response.ErrorListener() {
@@ -92,7 +99,7 @@ public class MainActivity extends Activity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("ID", "124");
+                params.put("ID", "123");
 
 
                 //params.put("domain", "http://itsalif.info");

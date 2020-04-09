@@ -45,5 +45,12 @@
         android:layout_height="173dp"
         android:background="@android:drawable/alert_light_frame" />
 
+    <EditText
+        android:id="@+id/edit1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
 
 </LinearLayout>
