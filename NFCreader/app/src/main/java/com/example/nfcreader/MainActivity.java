@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
     TextView tvNFCContent;
     TextView message;
     TextView message1;
-    EditText edit1;
+
 
 
 
@@ -71,43 +71,12 @@ public class MainActivity extends Activity {
         context = this;
         tvNFCContent = (TextView) findViewById(R.id.nfc_contents);
         message1 = (TextView) findViewById(R.id.message1);
-        edit1 = (EditText) findViewById(R.id.edit1);
+        message = (TextView) findViewById(R.id.message);
 
 
-        String URL = "http://3.84.209.134/Test.php" +
-                "";
-        RequestQueue queue;
-
-        queue = Volley.newRequestQueue(this);
-
-        StringRequest postRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-              //  Toast.makeText(getApplicationContext(), "Response from server:" + response, Toast.LENGTH_LONG).show();
-                 message1.setText("Server response: " + response);
 
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        })
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("ID", "123");
 
-
-                //params.put("domain", "http://itsalif.info");
-
-                return params;
-            }
-        };
-        queue.add(postRequest);
 
 
 
@@ -167,6 +136,43 @@ public class MainActivity extends Activity {
             Log.e("UnsupportedEncoding", e.toString());
         }
         tvNFCContent.setText("NFC Content: " + text);
+
+        String URL = "http://3.84.209.134/Test.php" +
+                "";
+
+        RequestQueue queue;
+
+        queue = Volley.newRequestQueue(this);
+
+        final String finalText = text;
+        StringRequest postRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //  Toast.makeText(getApplicationContext(), "Response from server:" + response, Toast.LENGTH_LONG).show();
+                message1.setText("Product Details: " + response);
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("ID", finalText);
+
+
+                //params.put("domain", "http://itsalif.info");
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
 
 
 
