@@ -44,6 +44,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class MainActivity extends Activity {
 
     public static final String ERROR_DETECTED = "No NFC tag detected!";
@@ -145,13 +147,31 @@ public class MainActivity extends Activity {
         queue = Volley.newRequestQueue(this);
 
         final String finalText = text;
-        StringRequest postRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        final StringRequest postRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //  Toast.makeText(getApplicationContext(), "Response from server:" + response, Toast.LENGTH_LONG).show();
-                message1.setText("Product Details: " + response);
+                try {
+                    JSONArray product = new JSONArray(response);// Convert response string in to json object.
+                    for (int i =0 ; i< product.length();i++){
 
 
+                        JSONObject jsonObject = product.getJSONObject(i);
+                        String id= jsonObject.getString("id");
+                        String name= jsonObject.getString("name");
+                        Double  price = jsonObject.getDouble("price");
+                        message1.setText("Product Details " +"\n\nProducts id " + id + "\n\nProduct Description \nName: "+name +"\nPrice: € "+price);
+                    }
+
+
+
+                   // message1.setText("Product Details: " + ID);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+                //message1.setText("Product Details: " + id);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -167,7 +187,8 @@ public class MainActivity extends Activity {
                 params.put("ID", finalText);
 
 
-                //params.put("domain", "http://itsalif.info");
+
+
 
                 return params;
             }

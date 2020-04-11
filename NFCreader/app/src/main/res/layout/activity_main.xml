@@ -12,17 +12,26 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="101dp"
-        android:text="Intelli Scan" />
+        android:gravity="center"
+        android:text="Intelli Scan"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="@android:color/background_dark" />
 
     <TextView
         android:id="@+id/nfc_contents"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:text="Current Product ID:" />
+        android:layout_height="91dp"
+        android:gravity="left"
+        android:text="Current Product ID:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_dark" />
 
     <TextView
         android:id="@+id/message1"
         android:layout_width="match_parent"
-        android:layout_height="114dp"
-        android:text="Your Product Details" />
+        android:layout_height="186dp"
+        android:gravity="left"
+        android:text="Your Product Details"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_dark" />
 </LinearLayout>
