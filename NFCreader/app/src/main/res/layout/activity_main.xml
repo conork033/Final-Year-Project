@@ -21,8 +21,8 @@
         android:id="@+id/nfc_contents"
         android:layout_width="match_parent"
         android:layout_height="91dp"
-        android:gravity="left"
-        android:text="Current Product ID:"
+        android:gravity="center"
+        android:text="Place Your Phone Close To Tag"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/background_dark" />
 

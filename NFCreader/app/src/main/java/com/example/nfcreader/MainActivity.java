@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
     public void buildTagViews(NdefMessage[] msgs) {
         if (msgs == null || msgs.length == 0) return;
 
-        String text = "";
+        String id = "";
         //String tagId = new String(msgs[0].getRecords()[0].getType());
         byte[] payload = msgs[0].getRecords()[0].getPayload();
         String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get the Text Encoding
@@ -130,14 +130,15 @@ public class MainActivity extends Activity {
 
 
         try {
-            // Get the Text
-            text = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
+            // Get the id from the tag
+            id = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
 
 
         } catch (UnsupportedEncodingException e) {
             Log.e("UnsupportedEncoding", e.toString());
         }
-        tvNFCContent.setText("NFC Content: " + text);
+       // tvNFCContent.setText("NFC Content: " + text);
+        // tvNFCContent.setText("Place your Device Close to Product Tag ");
 
         String URL = "http://3.84.209.134/Test.php" +
                 "";
@@ -146,12 +147,12 @@ public class MainActivity extends Activity {
 
         queue = Volley.newRequestQueue(this);
 
-        final String finalText = text;
+        final String finalText = id;
         final StringRequest postRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONArray product = new JSONArray(response);// Convert response string in to json object.
+                    JSONArray product = new JSONArray(response);// Convert response string into json object.
                     for (int i =0 ; i< product.length();i++){
 
 
@@ -185,10 +186,6 @@ public class MainActivity extends Activity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("ID", finalText);
-
-
-
-
 
                 return params;
             }
