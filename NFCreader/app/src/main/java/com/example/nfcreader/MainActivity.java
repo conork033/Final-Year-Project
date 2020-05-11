@@ -16,8 +16,10 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +69,7 @@ public class MainActivity extends Activity {
 
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +78,7 @@ public class MainActivity extends Activity {
         tvNFCContent = (TextView) findViewById(R.id.nfc_contents);
         message1 = (TextView) findViewById(R.id.message1);
         message = (TextView) findViewById(R.id.message);
+
 
 
 
@@ -137,10 +142,10 @@ public class MainActivity extends Activity {
         } catch (UnsupportedEncodingException e) {
             Log.e("UnsupportedEncoding", e.toString());
         }
-       // tvNFCContent.setText("NFC Content: " + text);
-        // tvNFCContent.setText("Place your Device Close to Product Tag ");
 
-        String URL = "http://3.84.209.134/Test.php" +
+
+
+        String URL = "http://54.210.70.245/Test.php" +
                 "";
 
         RequestQueue queue;
@@ -155,13 +160,13 @@ public class MainActivity extends Activity {
                     JSONArray product = new JSONArray(response);// Convert response string into json object.
                     for (int i =0 ; i< product.length();i++){
 
-
                         JSONObject jsonObject = product.getJSONObject(i);
                         String id= jsonObject.getString("id");
                         String name= jsonObject.getString("name");
                         Double  price = jsonObject.getDouble("price");
-                        message1.setText("Product Details " +"\n\nProducts id " + id + "\n\nProduct Description \nName: "+name +"\nPrice: € "+price);
+                        message1.setText("Product Details " +"\n\nProducts id " + id + "\nProduct Description \nName: "+name +"\nPrice: € "+price);
                     }
+
 
 
 

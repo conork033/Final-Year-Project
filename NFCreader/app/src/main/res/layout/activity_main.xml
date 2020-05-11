@@ -34,4 +34,6 @@
         android:text="Your Product Details"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/background_dark" />
+
+
 </LinearLayout>
