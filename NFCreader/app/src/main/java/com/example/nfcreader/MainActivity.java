@@ -152,7 +152,7 @@ public class MainActivity extends Activity {
 
         queue = Volley.newRequestQueue(this);
 
-        final String finalText = id;
+        final String postID = id;
         final StringRequest postRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -164,33 +164,28 @@ public class MainActivity extends Activity {
                         String id= jsonObject.getString("id");
                         String name= jsonObject.getString("name");
                         Double  price = jsonObject.getDouble("price");
-                        message1.setText("Product Details " +"\n\nProducts id " + id + "\nProduct Description \nName: "+name +"\nPrice: € "+price);
+                        String description = jsonObject.getString("description");
+                        message1.setText("Product Details " +"\n\nProducts Id " + id + "\nName: "+name +"\nPrice: € "+price+"\nDescription: "+description);
                     }
 
-
-
-
-                   // message1.setText("Product Details: " + ID);
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-
-                //message1.setText("Product Details: " + id);
             }
         }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+             @Override
+             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
-            }
+             }
         })
         {
             @Override
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("ID", finalText);
+                params.put("ID", postID);
 
                 return params;
             }
@@ -198,17 +193,7 @@ public class MainActivity extends Activity {
         queue.add(postRequest);
 
 
-
-
-
     }
-
-
-
-
-
-
-
 
 
 
