@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
 
     Context context;
 
-    TextView tvNFCContent;
+    TextView instruc;
     TextView message;
     TextView message1;
 
@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-        tvNFCContent = (TextView) findViewById(R.id.nfc_contents);
+        instruc= (TextView) findViewById(R.id.instruc);
         message1 = (TextView) findViewById(R.id.message1);
         message = (TextView) findViewById(R.id.message);
 
@@ -144,7 +144,6 @@ public class MainActivity extends Activity {
         }
 
 
-
         String URL = "http://54.210.70.245/Test.php" +
                 "";
 
@@ -158,14 +157,14 @@ public class MainActivity extends Activity {
             public void onResponse(String response) {
                 try {
                     JSONArray product = new JSONArray(response);// Convert response string into json object.
-                    for (int i =0 ; i< product.length();i++){
+                    for (int i = 0; i < product.length(); i++) {
 
                         JSONObject jsonObject = product.getJSONObject(i);
-                        String id= jsonObject.getString("id");
-                        String name= jsonObject.getString("name");
-                        Double  price = jsonObject.getDouble("price");
+                        String id = jsonObject.getString("id");
+                        String name = jsonObject.getString("name");
+                        Double price = jsonObject.getDouble("price");
                         String description = jsonObject.getString("description");
-                        message1.setText("Product Details " +"\n\nProducts Id " + id + "\nName: "+name +"\nPrice: € "+price+"\nDescription: "+description);
+                        message1.setText("Product Details " + "\n\nProducts Id " + id + "\nName: " + name + "\nPrice: € " + price + "\nDescription: " + description);
                     }
 
 
@@ -174,26 +173,26 @@ public class MainActivity extends Activity {
                 }
 
             }
-        }, new Response.ErrorListener() {
-             @Override
-             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
-             }
-        })
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                })
         {
             @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("ID", postID);
 
                 return params;
             }
         };
         queue.add(postRequest);
-
-
     }
+
+
 
 
 

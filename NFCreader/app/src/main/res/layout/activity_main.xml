@@ -18,7 +18,7 @@
         android:textColor="@android:color/background_dark" />
 
     <TextView
-        android:id="@+id/nfc_contents"
+        android:id="@+id/instruc"
         android:layout_width="match_parent"
         android:layout_height="91dp"
         android:gravity="center"

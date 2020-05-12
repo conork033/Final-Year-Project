@@ -8,18 +8,19 @@ $dbname = "products";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
  
 
- echo "yuiyiuy";
+ 
 
  if($_SERVER["REQUEST_METHOD"]=="POST")
  { // Fetching variables of the form which travels in URL
 	$id = $_POST['id'];
 	$name = $_POST['name'];
 	$price = $_POST['price'];
+	$description = $_POST['description'];
 
-	$sql = "INSERT INTO products (id,name,price) VALUES('$id','$name','$price')";
+	$sql = "INSERT INTO products (id,name,price,Description) VALUES('$id','$name','$price','$description')";
 
 	 if (mysqli_query($conn, $sql)) {
-        echo "New record has been added successfully !";
+        echo "New product has been added successfully !";
      } else {
         echo "Error: " . $sql . ":-" . mysqli_error($conn);
      }
@@ -28,7 +29,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Close connection
 	mysqli_close($conn);
 
-	header("refresh:2; url=insert.html");
+	header("refresh:10; url=insert.html");
 
 }
 ?>
