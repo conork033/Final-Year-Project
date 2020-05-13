@@ -61,7 +61,6 @@ public class MainActivity extends Activity {
     Context context;
 
     TextView instruc;
-    TextView message;
     TextView message1;
 
 
@@ -77,7 +76,8 @@ public class MainActivity extends Activity {
         context = this;
         instruc= (TextView) findViewById(R.id.instruc);
         message1 = (TextView) findViewById(R.id.message1);
-        message = (TextView) findViewById(R.id.message);
+
+
 
 
 
@@ -164,7 +164,10 @@ public class MainActivity extends Activity {
                         String name = jsonObject.getString("name");
                         Double price = jsonObject.getDouble("price");
                         String description = jsonObject.getString("description");
-                        message1.setText("Product Details " + "\n\nProducts Id " + id + "\nName: " + name + "\nPrice: € " + price + "\nDescription: " + description);
+
+                        message1.setText( "\n\nProducts ID: " + id + "\nName: " + name + "\nPrice: € " + price +"\nDescription:\n" + description);
+
+
                     }
 
 

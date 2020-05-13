@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">NFCreader</string>
+    <string name="place_your_phone_close_to_tag">Place Your Phone Close To Tag</string>
+    <string name="intelli_scan">Intelli Scan</string>
+    <string name="your_scanned_product">Your Scanned Product</string>
 </resources>

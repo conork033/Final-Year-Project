@@ -16,9 +16,8 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 	$name = $_POST['name'];
 	$price = $_POST['price'];
 	$description = $_POST['description'];
-	
 
-	$sql = "INSERT INTO products (id,name,price,Description) VALUES('$id','$name','$price','$description')";
+	$sql = "UPDATE  products SET id='$id',name='$name',price='$price',Description='$description' WHERE id='$id'";
 
 	 if (mysqli_query($conn, $sql)) {
         echo "New product has been added successfully !";
@@ -30,7 +29,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Close connection
 	mysqli_close($conn);
 
-	header("refresh:2; url=insert.html");
+	header("refresh:2; url=Update.html");
 
 }
 ?>

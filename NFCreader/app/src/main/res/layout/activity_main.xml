@@ -1,39 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:animationCache="false"
-    android:background="@android:drawable/gallery_thumb"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="101dp"
+        android:background="#070505"
         android:gravity="center"
-        android:text="Intelli Scan"
+        android:text="@string/intelli_scan"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="@android:color/background_dark" />
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/instruc"
         android:layout_width="match_parent"
         android:layout_height="91dp"
+        android:background="#6A6262"
         android:gravity="center"
-        android:text="Place Your Phone Close To Tag"
+        android:text="@string/place_your_phone_close_to_tag"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@android:color/background_dark" />
+        android:textColor="#FBF6F6"
+        app:fontFamily="sans-serif-black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/message1"
-        android:layout_width="match_parent"
-        android:layout_height="186dp"
-        android:gravity="left"
-        android:text="Your Product Details"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@android:color/background_dark" />
+        android:layout_width="352dp"
+        android:layout_height="479dp"
+        android:autoLink="all"
+        android:background="@drawable/back"
+        android:gravity="top|left"
+        android:paddingLeft="20dp"
+        android:text="Product Will Appear Here"
+        android:textAlignment="gravity"
+        android:textColor="#0B0A0A"
+        android:textSize="24sp"
+        app:fontFamily="sans-serif-black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.761" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
