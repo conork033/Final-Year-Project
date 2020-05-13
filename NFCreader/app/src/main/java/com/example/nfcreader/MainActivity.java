@@ -3,29 +3,20 @@ package com.example.nfcreader;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.nfc.FormatException;
+
 import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
+
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,14 +24,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-
 import com.example.peng.nfcreadwrite.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -52,8 +39,8 @@ import java.util.Map;
 public class MainActivity extends Activity {
 
     public static final String ERROR_DETECTED = "No NFC tag detected!";
-    public static final String WRITE_SUCCESS = "Text written to the NFC tag successfully!";
-    public static final String WRITE_ERROR = "Error during writing, is the NFC tag close enough to your device?";
+
+
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
     IntentFilter writeTagFilters[];
@@ -62,11 +49,6 @@ public class MainActivity extends Activity {
 
     TextView instruc;
     TextView message1;
-
-
-
-
-
 
 
     @Override
@@ -80,17 +62,9 @@ public class MainActivity extends Activity {
 
 
 
-
-
-
-
-
-
-
-
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
-            // Stop here, we definitely need NFC
+            // Check if your smartphone has nfc
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
             finish();
         }
@@ -103,9 +77,9 @@ public class MainActivity extends Activity {
     }
 
 
-    /******************************************************************************
+    /*
      **********************************Read From NFC Tag***************************
-     ******************************************************************************/
+    */
     private void readFromIntent(Intent intent) {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
@@ -143,7 +117,7 @@ public class MainActivity extends Activity {
             Log.e("UnsupportedEncoding", e.toString());
         }
 
-
+        //server url for query
         String URL = "http://54.210.70.245/Test.php" +
                 "";
 
@@ -151,12 +125,12 @@ public class MainActivity extends Activity {
 
         queue = Volley.newRequestQueue(this);
 
-        final String postID = id;
+        final String postID = id;//id scanned = post id
         final StringRequest postRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONArray product = new JSONArray(response);// Convert response string into json object.
+                    JSONArray product = new JSONArray(response);// Convert response string into json object
                     for (int i = 0; i < product.length(); i++) {
 
                         JSONObject jsonObject = product.getJSONObject(i);
@@ -184,6 +158,7 @@ public class MainActivity extends Activity {
                     }
                 })
         {
+            //put id into hash map
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
@@ -192,7 +167,7 @@ public class MainActivity extends Activity {
                 return params;
             }
         };
-        queue.add(postRequest);
+        queue.add(postRequest);//add request
     }
 
 
