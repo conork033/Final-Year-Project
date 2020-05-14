@@ -10,7 +10,7 @@ $dbname = "products";
  $ID = $_POST['ID']; ;
 
 
-// Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "SELECT id,name,price FROM products where id=$ID" ;
+$sql = "SELECT id,name,price,description FROM products where id=$ID" ;
 $result = $conn->query($sql);
 if ($result->num_rows >0) {
  while($row[] = $result->fetch_assoc()) {
