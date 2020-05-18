@@ -8,8 +8,6 @@ import android.content.IntentFilter;
 
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
-import android.nfc.Tag;
-import android.nfc.tech.Ndef;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -42,12 +40,7 @@ public class MainActivity extends Activity {
 
 
     NfcAdapter nfcAdapter;
-    PendingIntent pendingIntent;
-    IntentFilter writeTagFilters[];
-
     Context context;
-
-    TextView instruc;
     TextView message1;
 
 
@@ -56,7 +49,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-        instruc= (TextView) findViewById(R.id.instruc);
+
         message1 = (TextView) findViewById(R.id.message1);
 
 
@@ -70,10 +63,7 @@ public class MainActivity extends Activity {
         }
         readFromIntent(getIntent());
 
-        pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-        IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
-        tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
-        writeTagFilters = new IntentFilter[]{tagDetected};
+
     }
 
 
@@ -82,9 +72,9 @@ public class MainActivity extends Activity {
     */
     private void readFromIntent(Intent intent) {
         String action = intent.getAction();
-        if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
+        if ( NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
                 || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
-                || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
+                ||NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
             Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             NdefMessage[] msgs = null;
             if (rawMsgs != null) {
