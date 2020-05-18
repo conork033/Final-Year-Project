@@ -14,7 +14,7 @@
         android:layout_height="101dp"
         android:background="#070505"
         android:gravity="center"
-        android:text="@string/intelli_scan"
+        android:text="IntelliScan"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"

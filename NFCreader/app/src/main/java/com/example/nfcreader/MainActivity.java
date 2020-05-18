@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class MainActivity extends Activity {
 
-    public static final String ERROR_DETECTED = "No NFC tag detected!";
+
 
 
     NfcAdapter nfcAdapter;
@@ -101,11 +101,11 @@ public class MainActivity extends Activity {
         if (msgs == null || msgs.length == 0) return;
 
         String id = "";
-        //String tagId = new String(msgs[0].getRecords()[0].getType());
-        byte[] payload = msgs[0].getRecords()[0].getPayload();
+
+        byte[] payload = msgs[0].getRecords()[0].getPayload();//get the data stored on the tag
         String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get the Text Encoding
-        int languageCodeLength = payload[0] & 0063; // Get the Language Code, e.g. "en"
-        // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
+        int languageCodeLength = payload[0] & 0063; // Get the Language
+
 
 
         try {
@@ -130,7 +130,7 @@ public class MainActivity extends Activity {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONArray product = new JSONArray(response);// Convert response string into json object
+                    JSONArray product = new JSONArray(response);
                     for (int i = 0; i < product.length(); i++) {
 
                         JSONObject jsonObject = product.getJSONObject(i);
